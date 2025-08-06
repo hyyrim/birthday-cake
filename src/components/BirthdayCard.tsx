@@ -4,7 +4,8 @@ import Cake from './Cake';
 import Candles from './Candles';
 import BirthdayText from './BirthdayText';
 import ThemeSelector, { type Theme } from './ThemeSelector';
-import confetti from 'canvas-confetti';
+import ConfettiButton from './ConfettiButton';
+import ShareButton from './ShareButton';
 
 interface BirthdayCardProps {
   name: string;
@@ -14,35 +15,22 @@ interface BirthdayCardProps {
 const BirthdayCard: React.FC<BirthdayCardProps> = ({ name, message }) => {
   const [currentTheme, setCurrentTheme] = useState<Theme>('chocolate');
 
-  const handleConfettiClick = () => {
-      confetti({
-        particleCount: 150,
-        spread: 90,
-        origin: { y: 0.6 }, // 터지는 위치 아래쪽 조정
-      });
-  };
-
-
   return (
-    <>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.header}>
         <ThemeSelector
           currentTheme={currentTheme}
           onThemeChange={setCurrentTheme}
         />
-        <div className={styles.content}>
-          <Cake theme={currentTheme} />
-          <Candles theme={currentTheme} />
-          <BirthdayText name={name} message={message} />
-        </div>
+        <ShareButton />
       </div>
-      <button 
-        className={styles.confettiButton} 
-        onClick={handleConfettiClick}
-      >
-        🥳
-      </button>
-    </>
+      <div className={styles.content}>
+        <Cake theme={currentTheme} />
+        <Candles theme={currentTheme} />
+        <BirthdayText name={name} message={message} />
+      </div>
+      <ConfettiButton />
+    </div>
   );
 };
 

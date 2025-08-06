@@ -13,9 +13,9 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   onThemeChange,
 }) => {
   const themes = [
-    { id: 'chocolate', name: '초코', color: '#643925' },
-    { id: 'cream', name: '생크림', color: '#FFF8DC' },
-    { id: 'blueberry', name: '블루베리', color: '#8E7A9B' },
+    { id: 'chocolate', name: 'chocolate', color: '#643925' },
+    { id: 'cream', name: 'cream', color: '#FFF8DC' },
+    { id: 'blueberry', name: 'blueberry', color: '#8E7A9B' },
   ] as const;
 
   return (

@@ -1,0 +1,57 @@
+.confettiButton {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.confettiButton:hover:not(:disabled) {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.confettiButton:active:not(:disabled) {
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+.confettiButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+  animation: pulse 1s infinite;
+}
+
+.confettiButton.active {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .confettiButton {
+    bottom: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+} 
