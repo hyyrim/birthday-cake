@@ -5,7 +5,7 @@
   font-style: italic;
   text-align: center;
   opacity: 0;
-  animation: textAppear 1s 7s ease-out forwards;
+  animation: textAppear 1s 7.5s ease-out forwards;
 }
 
 .text h1 {
