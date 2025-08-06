@@ -1,5 +1,6 @@
 # Birthday Cake 🎂
 
+![preview](https://github.com/user-attachments/assets/8c5de57b-d3b3-4b35-b876-1b18edcbb5ca)
 생일 축하를 위한 인터랙티브 3D 케이크 웹사이트입니다.
 
 ## ✨ 주요 기능
@@ -63,6 +64,3 @@ src/
 - **패키지 매니저**: pnpm
 - **애니메이션**: Canvas Confetti
 
-
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
