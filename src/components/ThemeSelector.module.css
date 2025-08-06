@@ -1,0 +1,90 @@
+.container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.themeButtons {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.themeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+}
+
+.themeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.themeButton.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.colorIndicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.themeName {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .container {
+    top: 10px;
+    right: 10px;
+  }
+
+  .themeButtons {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .themeButton {
+    padding: 6px 8px;
+    min-width: 50px;
+  }
+
+  .colorIndicator {
+    width: 16px;
+    height: 16px;
+  }
+
+  .themeName {
+    font-size: 10px;
+  }
+}
+
+/* PC에서는 가운데 상단으로 */
+@media (min-width: 769px) {
+  .container {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+} 

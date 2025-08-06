@@ -10,7 +10,7 @@
   height: 35px;
   transform: translateY(-100vh);
   backface-visibility: hidden;
-  animation: in 500ms 6s ease-out forwards;
+  animation: in 600ms 6s ease-out forwards;
   z-index: 10;
 }
 
