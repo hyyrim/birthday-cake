@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Candles.module.css';
-import type { Theme } from './ThemeSelector';
+import type { Theme } from '../ui/ThemeSelector';
 
 interface CandlesProps {
   theme: Theme;

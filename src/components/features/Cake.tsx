@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Cake.module.css';
-import type { Theme } from './ThemeSelector';
-import { themeColors } from '../utils/themes';
+import type { Theme } from '../ui/ThemeSelector';
+import { themeColors } from '../../utils/themes';
 
 interface CakeProps {
   theme: Theme;

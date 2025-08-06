@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import styles from './ConfettiButton.module.css';
-import tadaSound from '../assets/tada-fanfare.mp3';
+import tadaSound from '../../assets/tada-fanfare.mp3';
 
 const ConfettiButton: React.FC = () => {
   const [isConfettiActive, setIsConfettiActive] = useState(false);

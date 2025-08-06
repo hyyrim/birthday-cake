@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from './BirthdayCard.module.css';
-import Cake from './Cake';
-import Candles from './Candles';
-import BirthdayText from './BirthdayText';
-import ThemeSelector, { type Theme } from './ThemeSelector';
-import ConfettiButton from './ConfettiButton';
-import ButtonGroup from './ButtonGroup';
-import EditMode from './EditMode';
-import Toast from './Toast';
+import Cake from '../features/Cake';
+import Candles from '../features/Candles';
+import BirthdayText from '../features/BirthdayText';
+import ThemeSelector, { type Theme } from '../ui/ThemeSelector';
+import ConfettiButton from '../ui/ConfettiButton';
+import ButtonGroup from '../ui/ButtonGroup';
+import EditMode from '../ui/EditMode';
+import Toast from '../ui/Toast';
 
 interface BirthdayCardProps {
   name: string;
