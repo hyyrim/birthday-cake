@@ -8,7 +8,6 @@ import ConfettiButton from '../ui/ConfettiButton';
 import ButtonGroup from '../ui/ButtonGroup';
 import EditMode from '../ui/EditMode';
 import Toast from '../ui/Toast';
-import { parseURLData, updateURL } from '../../utils/urlEncoder';
 
 interface BirthdayCardProps {
   name: string;
@@ -28,18 +27,24 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
 
   // URL 파라미터를 기준으로 초기값 설정
   useEffect(() => {
-    const urlData = parseURLData();
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlName = urlParams.get('name');
+    const urlMessage = urlParams.get('message');
+    const urlTheme = urlParams.get('theme') as Theme;
 
-    if (urlData) {
-      setName(urlData.name);
-      setMessage(urlData.message);
-      setCurrentTheme(urlData.theme);
-    } else {
-      // URL에 데이터가 없으면 기본값 사용
-      setName(defaultName);
-      setMessage(defaultMessage);
-      setCurrentTheme('chocolate');
-    }
+    // URL에 값이 있으면 사용, 없으면 기본값 사용
+    const finalName = urlName ? decodeURIComponent(urlName) : defaultName;
+    const finalMessage = urlMessage
+      ? decodeURIComponent(urlMessage)
+      : defaultMessage;
+    const finalTheme =
+      urlTheme && ['chocolate', 'cream', 'blueberry'].includes(urlTheme)
+        ? urlTheme
+        : 'chocolate';
+
+    setName(finalName);
+    setMessage(finalMessage);
+    setCurrentTheme(finalTheme);
   }, [defaultName, defaultMessage]);
 
   const handleToggleEditMode = () => {
@@ -48,32 +53,26 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
 
   const handleNameChange = (newName: string) => {
     setName(newName);
-    // URL 파라미터 즉시 업데이트 (Base64 방식)
-    updateURL({
-      name: newName,
-      message,
-      theme: currentTheme,
-    });
+    // URL 파라미터 즉시 업데이트
+    const url = new URL(window.location.href);
+    url.searchParams.set('name', encodeURIComponent(newName));
+    window.history.replaceState({}, '', url.toString());
   };
 
   const handleMessageChange = (newMessage: string) => {
     setMessage(newMessage);
-    // URL 파라미터 즉시 업데이트 (Base64 방식)
-    updateURL({
-      name,
-      message: newMessage,
-      theme: currentTheme,
-    });
+    // URL 파라미터 즉시 업데이트
+    const url = new URL(window.location.href);
+    url.searchParams.set('message', encodeURIComponent(newMessage));
+    window.history.replaceState({}, '', url.toString());
   };
 
   const handleThemeChange = (newTheme: Theme) => {
     setCurrentTheme(newTheme);
-    // URL 파라미터 즉시 업데이트 (Base64 방식)
-    updateURL({
-      name,
-      message,
-      theme: newTheme,
-    });
+    // URL 파라미터 즉시 업데이트
+    const url = new URL(window.location.href);
+    url.searchParams.set('theme', newTheme);
+    window.history.replaceState({}, '', url.toString());
   };
 
   const showToast = (message: string) => {
