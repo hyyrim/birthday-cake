@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Toast.module.css';
 
 interface ToastProps {
@@ -14,11 +14,17 @@ const Toast: React.FC<ToastProps> = ({
   onClose,
   type = 'success',
 }) => {
+  const [isHiding, setIsHiding] = useState(false);
+
   useEffect(() => {
     if (isVisible) {
+      setIsHiding(false);
       const timer = setTimeout(() => {
-        onClose();
-      }, 2000);
+        setIsHiding(true);
+        setTimeout(() => {
+          onClose();
+        }, 300);
+      }, 1500);
 
       return () => clearTimeout(timer);
     }
@@ -27,7 +33,9 @@ const Toast: React.FC<ToastProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`${styles.toast} ${styles[type]} ${styles.show}`}>
+    <div
+      className={`${styles.toast} ${styles[type]} ${isHiding ? styles.hide : styles.show}`}
+    >
       <div className={styles.content}>
         {type === 'success' && <span className={styles.icon}>✓</span>}
         {type === 'error' && <span className={styles.icon}>✕</span>}
