@@ -202,4 +202,4 @@ const Cake: React.FC<CakeProps> = ({ theme }) => {
   );
 };
 
-export default Cake; 
+export default Cake;

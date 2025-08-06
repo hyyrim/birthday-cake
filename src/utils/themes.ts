@@ -26,4 +26,4 @@ export const themeColors: Record<Theme, ThemeColors> = {
     cream: '#E8E0EB', // 라벤더
     base: '#E6E6FA',
   },
-}; 
+};

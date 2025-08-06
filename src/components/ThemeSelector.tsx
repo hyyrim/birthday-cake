@@ -21,16 +21,18 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.themeButtons}>
-        {themes.map((theme) => (
+        {themes.map(theme => (
           <button
             key={theme.id}
             className={`${styles.themeButton} ${
               currentTheme === theme.id ? styles.active : ''
             }`}
             onClick={() => onThemeChange(theme.id)}
-            style={{
-              '--theme-color': theme.color,
-            } as React.CSSProperties}
+            style={
+              {
+                '--theme-color': theme.color,
+              } as React.CSSProperties
+            }
           >
             <div className={styles.colorIndicator} />
             <span className={styles.themeName}>{theme.name}</span>
@@ -41,4 +43,4 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   );
 };
 
-export default ThemeSelector; 
+export default ThemeSelector;

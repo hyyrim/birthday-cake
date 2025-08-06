@@ -18,4 +18,4 @@ const Candles: React.FC<CandlesProps> = ({ theme }) => {
   );
 };
 
-export default Candles; 
+export default Candles;

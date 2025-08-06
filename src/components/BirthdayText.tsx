@@ -6,9 +6,9 @@ interface BirthdayTextProps {
   message?: string;
 }
 
-const BirthdayText: React.FC<BirthdayTextProps> = ({ 
-  name = "Jonas", 
-  message = "happy birthday!" 
+const BirthdayText: React.FC<BirthdayTextProps> = ({
+  name = 'Jonas',
+  message = 'happy birthday!',
 }) => {
   return (
     <div className={styles.text}>
@@ -18,4 +18,4 @@ const BirthdayText: React.FC<BirthdayTextProps> = ({
   );
 };
 
-export default BirthdayText; 
+export default BirthdayText;
