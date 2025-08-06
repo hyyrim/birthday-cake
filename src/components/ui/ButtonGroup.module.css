@@ -85,7 +85,7 @@
 /* 모바일 반응형 */
 @media (max-width: 768px) {
   .buttonGroup {
-    top: 23px;
+    top: 20px;
     right: 15px;
   }
 
@@ -102,5 +102,27 @@
   .menuItem {
     padding: 8px 14px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonGroup {
+    top: 15px;
+    right: 10px;
+  }
+
+  .hamburgerButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dropdownMenu {
+    top: 42px;
+    min-width: 100px;
+  }
+
+  .menuItem {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }
