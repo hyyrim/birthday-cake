@@ -5,13 +5,11 @@ import styles from './ButtonGroup.module.css';
 interface ButtonGroupProps {
   onEditClick: () => void;
   onShareClick: () => void;
-  isCopied: boolean;
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
   onEditClick,
   onShareClick,
-  isCopied,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

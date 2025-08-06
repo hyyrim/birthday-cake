@@ -1,0 +1,71 @@
+.cake {
+  display: block;
+  position: relative;
+  margin: -10em auto 0 auto;
+  mask: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 10%,
+    black 20%,
+    black 100%
+  );
+  -webkit-mask: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 10%,
+    black 20%,
+    black 100%
+  );
+}
+
+/* 각 레이어의 초기 상태 - 화면 바깥에서 시작 */
+.layer1,
+.layer2,
+.layer3,
+.layer4,
+.layer5,
+.layer6 {
+  opacity: 1;
+  transform: translateY(-100vh);
+}
+
+/* 첫 번째 레이어 - 즉시 시작 */
+.layer1 {
+  animation: layerFall 0.8s 0s ease-out forwards;
+}
+
+/* 두 번째 레이어 - 0.8초 후 시작 */
+.layer2 {
+  animation: layerFall 0.8s 0.8s ease-out forwards;
+}
+
+/* 세 번째 레이어 - 1.6초 후 시작 */
+.layer3 {
+  animation: layerFall 0.8s 1.6s ease-out forwards;
+}
+
+/* 네 번째 레이어 - 2.4초 후 시작 */
+.layer4 {
+  animation: layerFall 0.8s 2.4s ease-out forwards;
+}
+
+/* 다섯 번째 레이어 - 3.2초 후 시작 */
+.layer5 {
+  animation: layerFall 0.8s 3.2s ease-out forwards;
+}
+
+/* 여섯 번째 레이어 (크림) - 5초 후 시작 */
+.layer6 {
+  animation: layerFall 0.8s 5s ease-out forwards;
+}
+
+@keyframes layerFall {
+  0% {
+    opacity: 1;
+    transform: translateY(-100vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,4 +1,4 @@
-import type { Theme } from '../components/ThemeSelector';
+import type { Theme } from '../components/ui/ThemeSelector';
 
 export interface ThemeColors {
   cakeBase: string; // 케이크 기본 색상
