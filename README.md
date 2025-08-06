@@ -1,6 +1,7 @@
 # Birthday Cake 🎂
 
-![preview](https://github.com/user-attachments/assets/8c5de57b-d3b3-4b35-b876-1b18edcbb5ca)
+![preview](https://github.com/user-attachments/assets/b0e00ea8-0cd8-4882-8712-4bbbe26e6023)
+
 생일 축하를 위한 인터랙티브 3D 케이크 웹사이트입니다.
 
 ## ✨ 주요 기능
