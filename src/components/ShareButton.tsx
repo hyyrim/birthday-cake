@@ -9,7 +9,7 @@ const ShareButton: React.FC = () => {
       // 현재 URL 복사
       await navigator.clipboard.writeText(window.location.href);
       setIsCopied(true);
-      
+
       // 2초 후 복사 완료 메시지 제거
       setTimeout(() => {
         setIsCopied(false);
@@ -23,7 +23,7 @@ const ShareButton: React.FC = () => {
       textArea.select();
       document.execCommand('copy');
       document.body.removeChild(textArea);
-      
+
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
@@ -32,13 +32,13 @@ const ShareButton: React.FC = () => {
   };
 
   return (
-    <button 
-      className={`${styles.shareButton} ${isCopied ? styles.copied : ''}`} 
+    <button
+      className={`${styles.shareButton} ${isCopied ? styles.copied : ''}`}
       onClick={handleShareClick}
     >
-      {isCopied ? '✅ copied!' : '📤 share'}
+      {isCopied ? '✅ Copied!' : '📤 Share'}
     </button>
   );
 };
 
-export default ShareButton; 
+export default ShareButton;

@@ -3,8 +3,11 @@ import confetti from 'canvas-confetti';
 import styles from './ConfettiButton.module.css';
 
 const ConfettiButton: React.FC = () => {
+  const [isConfettiActive, setIsConfettiActive] = useState(false);
 
   const handleConfettiClick = () => {
+    if (!isConfettiActive) {
+      setIsConfettiActive(true);
 
       // canvas-confetti로 컨페티 실행
       confetti({
@@ -21,22 +24,26 @@ const ConfettiButton: React.FC = () => {
           '#54a0ff',
           '#5f27cd',
           '#00d2d3',
-          '#ff9f43'
-        ]
+          '#ff9f43',
+        ],
       });
 
-    
+      // 3초 후 버튼 다시 활성화
+      setTimeout(() => {
+        setIsConfettiActive(false);
+      }, 3000);
+    }
   };
 
   return (
-    <button 
-      className={`${styles.confettiButton}`} 
+    <button
+      className={`${styles.confettiButton} ${isConfettiActive ? styles.active : ''}`}
       onClick={handleConfettiClick}
-      
+      disabled={isConfettiActive}
     >
-      congrats! 🥳
+      {isConfettiActive ? '🎊 Celebrating...' : '🎉 Celebrate!'}
     </button>
   );
 };
 
-export default ConfettiButton; 
+export default ConfettiButton;

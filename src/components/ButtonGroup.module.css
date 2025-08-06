@@ -1,0 +1,111 @@
+.buttonGroup {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.hamburgerButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(100, 100, 100, 0.08);
+  z-index: 1001;
+}
+
+.hamburgerButton.active {
+  background: rgba(100, 126, 234, 0.15);
+  color: #764ba2;
+}
+
+.hamburgerButton.active:hover {
+  background: rgba(100, 126, 234, 0.25);
+  color: #764ba2;
+  transform: translateY(-1px);
+}
+
+.hamburgerButton:active {
+  transform: translateY(0);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 6px 0;
+  min-width: 120px;
+  animation: slideDown 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1002;
+}
+
+.menuItem {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuItem:hover {
+  background-color: rgba(100, 126, 234, 0.15);
+  color: #764ba2;
+}
+
+.menuItem.copied {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .buttonGroup {
+    top: 20px;
+    right: 15px;
+  }
+
+  .hamburgerButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dropdownMenu {
+    top: 46px;
+    min-width: 110px;
+  }
+
+  .menuItem {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

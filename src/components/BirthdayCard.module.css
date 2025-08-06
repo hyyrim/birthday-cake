@@ -54,16 +54,16 @@
   z-index: 100;
 }
 
-
 /* 모바일 반응형 */
 @media (max-width: 768px) {
+  .header {
+    padding: 15px 15px 0 15px;
+    align-items: flex-start;
+  }
+
   .confettiButton {
     bottom: 20px;
     padding: 10px 20px;
     font-size: 14px;
   }
-  .header {
-    padding: 10px 10px 0 10px;
-    align-items: flex-start;
-  }
-} 
+}
