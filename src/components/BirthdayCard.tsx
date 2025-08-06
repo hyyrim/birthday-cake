@@ -7,6 +7,7 @@ import ThemeSelector, { type Theme } from './ThemeSelector';
 import ConfettiButton from './ConfettiButton';
 import ButtonGroup from './ButtonGroup';
 import EditMode from './EditMode';
+import Toast from './Toast';
 
 interface BirthdayCardProps {
   name: string;
@@ -22,6 +23,8 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
   const [message, setMessage] = useState(defaultMessage);
   const [isEditMode, setIsEditMode] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   // URL 파라미터를 기준으로 초기값 설정
   useEffect(() => {
@@ -80,10 +83,20 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
     window.history.replaceState({}, '', url.toString());
   };
 
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setIsToastVisible(true);
+  };
+
+  const hideToast = () => {
+    setIsToastVisible(false);
+  };
+
   const handleShareClick = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
       setIsCopied(true);
+      showToast('URL copied to clipboard!');
       setTimeout(() => {
         setIsCopied(false);
       }, 2000);
@@ -97,6 +110,7 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
       document.body.removeChild(textArea);
 
       setIsCopied(true);
+      showToast('URL copied to clipboard!');
       setTimeout(() => {
         setIsCopied(false);
       }, 2000);
@@ -129,6 +143,12 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
         message={message}
         onNameChange={handleNameChange}
         onMessageChange={handleMessageChange}
+      />
+      <Toast
+        message={toastMessage}
+        isVisible={isToastVisible}
+        onClose={hideToast}
+        type='success'
       />
     </div>
   );

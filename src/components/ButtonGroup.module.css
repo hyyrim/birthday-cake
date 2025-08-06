@@ -71,11 +71,6 @@
   color: #764ba2;
 }
 
-.menuItem.copied {
-  color: #4caf50;
-  font-weight: 500;
-}
-
 @keyframes slideDown {
   from {
     opacity: 0;

@@ -43,21 +43,9 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
             <Edit size={16} />
             Edit
           </button>
-          <button
-            className={`${styles.menuItem} ${isCopied ? styles.copied : ''}`}
-            onClick={handleShareClick}
-          >
-            {isCopied ? (
-              <>
-                <span style={{ color: '#4caf50' }}>✓</span>
-                Copied!
-              </>
-            ) : (
-              <>
-                <Share size={16} />
-                Share
-              </>
-            )}
+          <button className={styles.menuItem} onClick={handleShareClick}>
+            <Share size={16} />
+            Share
           </button>
         </div>
       )}

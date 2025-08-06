@@ -31,7 +31,7 @@ const ConfettiButton: React.FC = () => {
       // 3초 후 버튼 다시 활성화
       setTimeout(() => {
         setIsConfettiActive(false);
-      }, 3000);
+      }, 1000);
     }
   };
 
