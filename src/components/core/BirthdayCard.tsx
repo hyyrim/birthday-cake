@@ -22,7 +22,6 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
   const [name, setName] = useState(defaultName);
   const [message, setMessage] = useState(defaultMessage);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isToastVisible, setIsToastVisible] = useState(false);
 
@@ -76,13 +75,6 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
     window.history.replaceState({}, '', url.toString());
   };
 
-  const updateURLParams = (newName: string, newMessage: string) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('name', encodeURIComponent(newName));
-    url.searchParams.set('message', encodeURIComponent(newMessage));
-    window.history.replaceState({}, '', url.toString());
-  };
-
   const showToast = (message: string) => {
     setToastMessage(message);
     setIsToastVisible(true);
@@ -95,10 +87,9 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
   const handleShareClick = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      setIsCopied(true);
       showToast('URL copied to clipboard!');
       setTimeout(() => {
-        setIsCopied(false);
+        hideToast();
       }, 2000);
     } catch (err) {
       console.error('Link copy failed:', err);
@@ -109,10 +100,9 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
       document.execCommand('copy');
       document.body.removeChild(textArea);
 
-      setIsCopied(true);
       showToast('URL copied to clipboard!');
       setTimeout(() => {
-        setIsCopied(false);
+        hideToast();
       }, 2000);
     }
   };
@@ -127,7 +117,6 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
         <ButtonGroup
           onEditClick={handleToggleEditMode}
           onShareClick={handleShareClick}
-          isCopied={isCopied}
         />
       </div>
       <div className={styles.content}>
