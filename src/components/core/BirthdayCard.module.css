@@ -34,6 +34,15 @@
   justify-content: center;
   width: 100vw;
   min-height: 100vh;
+  position: relative; /* 캔들 오버레이 기준 컨테이닝 블록 */
+}
+
+/* 케이크 위를 덮는 촛불 전용 오버레이 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 150; /* 케이크(svg)보다 위, 헤더보다 아래 */
 }
 
 .confettiButton {

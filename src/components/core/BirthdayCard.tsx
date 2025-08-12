@@ -121,7 +121,9 @@ const BirthdayCard: React.FC<BirthdayCardProps> = ({
       </div>
       <div className={styles.content}>
         <Cake theme={currentTheme} />
-        <Candles theme={currentTheme} />
+        <div className={styles.overlay}>
+          <Candles theme={currentTheme} />
+        </div>
         <BirthdayText name={name} message={message} />
       </div>
       <ConfettiButton />

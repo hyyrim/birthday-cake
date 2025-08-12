@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Cake.module.css';
 import type { Theme } from '../ui/ThemeSelector';
 import { themeColors } from '../../utils/themes';
@@ -7,14 +7,40 @@ interface CakeProps {
   theme: Theme;
 }
 
+const INTRO_TOTAL_MS = 6000; // 초기 전체 시퀀스가 끝나는 시점 근처
+
 const Cake: React.FC<CakeProps> = ({ theme }) => {
   const colors = themeColors[theme];
+  const [isIntro, setIsIntro] = useState(true);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+
+  // 초기 intro 종료 타이머
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsIntro(false), INTRO_TOTAL_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  // 테마 변경 시 nudge만 주기 (intro가 끝난 이후에만)
+  useEffect(() => {
+    if (!isIntro && svgRef.current) {
+      const layers = svgRef.current.querySelectorAll('g');
+      layers.forEach(layer => {
+        const element = layer as SVGGElement;
+        element.classList.add(styles.nudge);
+        const handleAnimationEnd = () => {
+          element.classList.remove(styles.nudge);
+          element.removeEventListener('animationend', handleAnimationEnd);
+        };
+        element.addEventListener('animationend', handleAnimationEnd);
+      });
+    }
+  }, [theme, isIntro]);
 
   return (
     <svg
-      key={theme} // 테마가 바뀔 때마다 SVG를 다시 렌더링하여 애니메이션 재시작
+      ref={svgRef}
       id='cake'
-      className={styles.cake}
+      className={`${styles.cake} ${isIntro ? styles.intro : ''}`}
       version='1.1'
       x='0px'
       y='0px'

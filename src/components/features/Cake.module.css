@@ -16,9 +16,14 @@
     black 20%,
     black 100%
   );
+  /* 외부 애니메이션 영향 방지 */
+  isolation: isolate;
+  contain: layout paint;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-/* 각 레이어의 초기 상태 - 화면 바깥에서 시작 */
+/* 각 레이어 기본 상태 */
 .layer1,
 .layer2,
 .layer3,
@@ -26,36 +31,45 @@
 .layer5,
 .layer6 {
   opacity: 1;
+}
+
+/* 초기 낙하 애니메이션은 intro 상태에서만 */
+.intro .layer1,
+.intro .layer2,
+.intro .layer3,
+.intro .layer4,
+.intro .layer5,
+.intro .layer6 {
   transform: translateY(-100vh);
 }
 
 /* 첫 번째 레이어 - 즉시 시작 */
-.layer1 {
+.intro .layer1 {
   animation: layerFall 0.8s 0s ease-out forwards;
 }
 
 /* 두 번째 레이어 - 0.8초 후 시작 */
-.layer2 {
+.intro .layer2 {
   animation: layerFall 0.8s 0.8s ease-out forwards;
 }
 
 /* 세 번째 레이어 - 1.6초 후 시작 */
-.layer3 {
+.intro .layer3 {
   animation: layerFall 0.8s 1.6s ease-out forwards;
 }
 
 /* 네 번째 레이어 - 2.4초 후 시작 */
-.layer4 {
+.intro .layer4 {
   animation: layerFall 0.8s 2.4s ease-out forwards;
 }
 
 /* 다섯 번째 레이어 - 3.2초 후 시작 */
-.layer5 {
+.intro .layer5 {
   animation: layerFall 0.8s 3.2s ease-out forwards;
 }
 
 /* 여섯 번째 레이어 (크림) - 5초 후 시작 */
-.layer6 {
+.intro .layer6 {
   animation: layerFall 0.8s 5s ease-out forwards;
 }
 
@@ -66,6 +80,21 @@
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 테마 변경 시 살짝 내려오는 효과 */
+.nudge {
+  animation: layerNudge 280ms ease-out;
+  will-change: transform;
+}
+
+@keyframes layerNudge {
+  0% {
+    transform: translateY(-6px);
+  }
+  100% {
     transform: translateY(0);
   }
 }

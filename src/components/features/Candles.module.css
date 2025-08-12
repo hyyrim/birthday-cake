@@ -1,17 +1,48 @@
+.wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  contain: layout;
+  isolation: isolate;
+  will-change: transform;
+}
+
 .velas {
   background: #ffffff;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -2.4px;
-  margin-top: 2.33333333px;
+  /* 래퍼 기준 좌표계 사용 */
+  top: 0;
+  left: 0;
   width: 5px;
   height: 35px;
-  transform: translateY(-100vh);
   backface-visibility: hidden;
-  animation: in 600ms 6s ease-out forwards;
   z-index: 10;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 인트로(초기 진입) 시에만 내려오는 애니메이션 적용 */
+.intro.velas {
+  transform: translate3d(0, -100vh, 0);
+  animation: in 900ms 5.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 테마 변경 시 살짝 내려오는 효과 */
+.nudge {
+  animation: candleNudge 160ms ease-out;
+  will-change: transform;
+}
+
+@keyframes candleNudge {
+  0% {
+    transform: translate3d(0, -2px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .velas:after,
@@ -41,44 +72,70 @@
   margin-left: -2.6px;
   width: 6.66666667px;
   height: 18px;
+  /* 기본 불빛 (애니메이션 지연 동안에도 보이도록) */
+  background: rgba(255, 210, 70, 0.9);
+  box-shadow: 0 0 24px 10px rgba(255, 210, 70, 0.35);
+  /* 합성/안정화 */
+  transform: translateZ(0);
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  /* 애니메이션 베이스 설정 */
+  animation-name: fuego;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
 }
 
+/* 드롭 종료(5.8s + 0.9s = 6.7s) 직후 점화 */
 .fuego:nth-child(1) {
-  animation: fuego 2s 6.5s infinite;
+  animation-duration: 2s;
+  animation-delay: 6.75s;
 }
 
 .fuego:nth-child(2) {
-  animation: fuego 1.5s 6.5s infinite;
+  animation-duration: 1.5s;
+  animation-delay: 6.75s;
 }
 
 .fuego:nth-child(3) {
-  animation: fuego 1s 6.5s infinite;
+  animation-duration: 1s;
+  animation-delay: 6.75s;
 }
 
 .fuego:nth-child(4) {
-  animation: fuego 0.5s 6.5s infinite;
+  animation-duration: 0.5s;
+  animation-delay: 6.75s;
 }
 
 .fuego:nth-child(5) {
-  animation: fuego 0.2s 6.5s infinite;
+  animation-duration: 0.2s;
+  animation-delay: 6.75s;
 }
 
 @keyframes fuego {
   0%,
   100% {
-    background: rgba(254, 248, 97, 0.5);
-    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
-    transform: translateY(0) scale(1);
+    /* box-shadow는 변동 주지 않아 미세 흔들림 방지 */
+    background: rgba(255, 230, 120, 0.95);
+    box-shadow: 0 0 24px 10px rgba(255, 210, 70, 0.35);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    background: rgba(255, 50, 0, 0.1);
-    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
-    transform: translateY(-20px) scale(0);
+    background: rgba(255, 200, 80, 0.8);
+    box-shadow: 0 0 24px 10px rgba(255, 210, 70, 0.35);
+    /* 진폭 축소하여 흔들림 완화 */
+    transform: translate3d(0, -10px, 0) scale(0.9);
   }
 }
 
 @keyframes in {
-  to {
-    transform: translateY(0);
+  0% {
+    transform: translate3d(0, -100vh, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
